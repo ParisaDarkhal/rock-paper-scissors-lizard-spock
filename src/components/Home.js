@@ -15,14 +15,15 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const optionsArray = ["rock", "paper", "scissors", "lizard", "rock"];
+const optionsArray = ["rock", "paper", "scissors", "lizard", "spock"];
 
 export default function Home() {
   const [winCouner, setWinCouner] = useState(0);
   const [loseCounter, setLoseCounter] = useState(0);
   const [tieCounter, setTieCounter] = useState(0);
   const [userChoice, setUserChoice] = useState(null);
-  const [computerChoice, setComputerChoice] = useState("");
+  const [computerChoice, setComputerChoice] = useState(null);
+  const computerChoiceRef = useRef(computerChoice);
   const [winner, setwinner] = useState("");
 
   useEffect(() => {
@@ -33,9 +34,10 @@ export default function Home() {
         const computerChoiceIndex = Math.floor(Math.random() * 5);
         const computerChoiceItem = optionsArray[computerChoiceIndex];
         setComputerChoice(computerChoiceItem);
+        computerChoiceRef.current = computerChoiceItem;
       };
       getComputerChoice();
-      getWinner(userChoice, computerChoice);
+      getWinner(userChoice, computerChoiceRef.current);
     }
   }, [userChoice]);
 
@@ -88,19 +90,12 @@ export default function Home() {
         </Grid>
         <Grid item xs={6}>
           <Item>
-            <Box display={"flex"} flexDirection={"column"}>
-              <Game
-                userChoice={userChoice}
-                setUserChoice={setUserChoice}
-                optionsArray={optionsArray}
-                winner={winner}
-              />
-
-              <Box>
-                <h3>User's Choice: {userChoice}</h3>
-                <h3>Computer's Choice: {computerChoice}</h3>
-              </Box>
-            </Box>
+            <Game
+              userChoice={userChoice}
+              setUserChoice={setUserChoice}
+              optionsArray={optionsArray}
+              winner={winner}
+            />
           </Item>
         </Grid>
         <Grid item xs={3}>
@@ -116,6 +111,10 @@ export default function Home() {
           </Item>
         </Grid>
       </Grid>
+      <Box style={{ marginTop: -200 }}>
+        <h3>User's Choice: {userChoice}</h3>
+        <h3>Computer's Choice: {computerChoice}</h3>
+      </Box>
     </Box>
   );
 }
