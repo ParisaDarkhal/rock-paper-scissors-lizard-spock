@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-export default function Stats({ winCouner, loseCounter, tieCounter }) {
+export default function Stats({ winCounter, loseCounter, tieCounter }) {
   return (
     <>
       <h1>Statistics</h1>
@@ -17,7 +17,7 @@ export default function Stats({ winCouner, loseCounter, tieCounter }) {
               <TableCell>
                 <h3>Wins</h3>
               </TableCell>
-              <TableCell>{winCouner}</TableCell>
+              <TableCell>{winCounter}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell>

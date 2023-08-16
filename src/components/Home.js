@@ -18,7 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const optionsArray = ["rock", "paper", "scissors", "lizard", "spock"];
 
 export default function Home() {
-  const [winCouner, setWinCouner] = useState(0);
+  const [winCounter, setWinCounter] = useState(0);
   const [loseCounter, setLoseCounter] = useState(0);
   const [tieCounter, setTieCounter] = useState(0);
   const [userChoice, setUserChoice] = useState(null);
@@ -56,7 +56,7 @@ export default function Home() {
       case "lizardpaper":
       case "spockrock":
       case "spockscissors":
-        setWinCouner(winCouner + 1);
+        setWinCounter(winCounter + 1);
         setwinner("User Wins! 😊");
         break;
       case "scissorsrock":
@@ -101,13 +101,17 @@ export default function Home() {
         <Grid item xs={3}>
           <Item>
             <Stats
-              winCouner={winCouner}
+              winCounter={winCounter}
               loseCounter={loseCounter}
               tieCounter={tieCounter}
             />
           </Item>
           <Item>
-            <Options />
+            <Options
+              setWinCounter={setWinCounter}
+              setLoseCounter={setLoseCounter}
+              setTieCounter={setTieCounter}
+            />
           </Item>
         </Grid>
       </Grid>
