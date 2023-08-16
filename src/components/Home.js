@@ -5,7 +5,7 @@ import Options from "./Options";
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import { Box, Grid, Paper } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -23,6 +23,17 @@ export default function Home() {
   const [tieCounter, setTieCounter] = useState(0);
   const [userChoice, setUserChoice] = useState("");
   const [computerChoice, setComputerChoice] = useState("");
+  console.log(userChoice);
+
+  useEffect(() => {
+    const getComputerChoice = () => {
+      const computerChoiceIndex = Math.floor(Math.random() * 5);
+      const computerChoiceItem = optionsArray[computerChoiceIndex];
+      setComputerChoice(computerChoiceItem);
+      console.log(computerChoice);
+    };
+    getComputerChoice();
+  }, [userChoice]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
