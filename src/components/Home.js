@@ -15,25 +15,58 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const optionsArray = ["ROCK", "PAPER", "SCISSORS", "LIZARD", "SPOCK"];
+const optionsArray = ["rock", "paper", "scissors", "lizard", "rock"];
 
 export default function Home() {
   const [winCouner, setWinCouner] = useState(0);
   const [loseCounter, setLoseCounter] = useState(0);
-  const [tieCounter, setTieCounter] = useState(0);
+  const [tieCounter, setTieCounter] = useState(-1);
   const [userChoice, setUserChoice] = useState("");
   const [computerChoice, setComputerChoice] = useState("");
-  console.log(userChoice);
 
   useEffect(() => {
     const getComputerChoice = () => {
       const computerChoiceIndex = Math.floor(Math.random() * 5);
       const computerChoiceItem = optionsArray[computerChoiceIndex];
       setComputerChoice(computerChoiceItem);
-      console.log(computerChoice);
     };
     getComputerChoice();
+    getWinner(userChoice, computerChoice);
   }, [userChoice]);
+
+  /////////////////////////
+  function getWinner(p1, p2) {
+    switch (p1 + p2) {
+      case "rockscissors":
+      case "rocklizard":
+      case "paperrock":
+      case "paperspock":
+      case "scissorspaper":
+      case "scissorslizard":
+      case "lizardspock":
+      case "lizardpaper":
+      case "spockrock":
+      case "spockscissors":
+        setWinCouner(winCouner + 1);
+        break;
+      case "scissorsrock":
+      case "lizardrock":
+      case "rockpaper":
+      case "spockpaper":
+      case "paperscissors":
+      case "lizardscissors":
+      case "spocklizard":
+      case "paperlizard":
+      case "rockspock":
+      case "scissorsspock":
+        setLoseCounter(loseCounter + 1);
+        break;
+      default:
+        setTieCounter(tieCounter + 1);
+    }
+  }
+
+  ////////////////////////////
 
   return (
     <Box sx={{ flexGrow: 1 }}>
