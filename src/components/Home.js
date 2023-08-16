@@ -5,6 +5,7 @@ import Options from "./Options";
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import { Box, Grid, Paper } from "@mui/material";
+import { useState } from "react";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -14,7 +15,14 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+const optionsArray = ["ROCK", "PAPER", "SCISSORS", "LIZARD", "SPOCK"];
+
 export default function Home() {
+  const [winCouner, setWinCouner] = useState(0);
+  const [loseCounter, setLoseCounter] = useState(0);
+  const [tieCounter, setTieCounter] = useState(0);
+  const [userChoice, setUserChoice] = useState("");
+  const [computerChoice, setComputerChoice] = useState("");
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
@@ -25,12 +33,20 @@ export default function Home() {
         </Grid>
         <Grid item xs={6}>
           <Item>
-            <Game />
+            <Game
+              userChoice={userChoice}
+              setUserChoice={setUserChoice}
+              optionsArray={optionsArray}
+            />
           </Item>
         </Grid>
         <Grid item xs={3}>
           <Item>
-            <Stats />
+            <Stats
+              winCouner={winCouner}
+              loseCounter={loseCounter}
+              tieCounter={tieCounter}
+            />
           </Item>
           <Item>
             <Options />

@@ -5,13 +5,25 @@ export default function Options() {
     <Box>
       <h1>Options</h1>
       <Stack>
-        <Button variant="contained" color="success" style={{ margin: 10 }}>
+        <Button
+          variant="outlined"
+          color="success"
+          style={{ margin: 10, borderRadius: 10, border: "solid" }}
+        >
           Play
         </Button>
-        <Button variant="contained" color="error" style={{ margin: 10 }}>
+        <Button
+          variant="outlined"
+          color="error"
+          style={{ margin: 10, borderRadius: 10, border: "solid" }}
+        >
           Quit
         </Button>
-        <Button variant="contained" color="secondary" style={{ margin: 10 }}>
+        <Button
+          variant="outlined"
+          color="secondary"
+          style={{ margin: 10, borderRadius: 10, border: "solid" }}
+        >
           Reset
         </Button>
       </Stack>
