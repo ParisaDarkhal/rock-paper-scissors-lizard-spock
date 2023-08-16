@@ -5,7 +5,7 @@ import Options from "./Options";
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import { Box, Grid, Paper } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -20,22 +20,29 @@ const optionsArray = ["rock", "paper", "scissors", "lizard", "rock"];
 export default function Home() {
   const [winCouner, setWinCouner] = useState(0);
   const [loseCounter, setLoseCounter] = useState(0);
-  const [tieCounter, setTieCounter] = useState(-1);
-  const [userChoice, setUserChoice] = useState("");
+  const [tieCounter, setTieCounter] = useState(0);
+  const [userChoice, setUserChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState("");
+  const [winner, setwinner] = useState("");
 
   useEffect(() => {
-    const getComputerChoice = () => {
-      const computerChoiceIndex = Math.floor(Math.random() * 5);
-      const computerChoiceItem = optionsArray[computerChoiceIndex];
-      setComputerChoice(computerChoiceItem);
-    };
-    getComputerChoice();
-    getWinner(userChoice, computerChoice);
+    if (userChoice === null) {
+      return;
+    } else {
+      const getComputerChoice = () => {
+        const computerChoiceIndex = Math.floor(Math.random() * 5);
+        const computerChoiceItem = optionsArray[computerChoiceIndex];
+        setComputerChoice(computerChoiceItem);
+      };
+      getComputerChoice();
+      getWinner(userChoice, computerChoice);
+    }
   }, [userChoice]);
 
   /////////////////////////
   function getWinner(p1, p2) {
+    console.log(p1);
+    console.log(p2);
     switch (p1 + p2) {
       case "rockscissors":
       case "rocklizard":
@@ -48,6 +55,7 @@ export default function Home() {
       case "spockrock":
       case "spockscissors":
         setWinCouner(winCouner + 1);
+        setwinner("User Wins! 😊");
         break;
       case "scissorsrock":
       case "lizardrock":
@@ -60,9 +68,11 @@ export default function Home() {
       case "rockspock":
       case "scissorsspock":
         setLoseCounter(loseCounter + 1);
+        setwinner("Computer Wins! 😒");
         break;
       default:
         setTieCounter(tieCounter + 1);
+        setwinner("It's a tie! 🪢");
     }
   }
 
@@ -78,11 +88,19 @@ export default function Home() {
         </Grid>
         <Grid item xs={6}>
           <Item>
-            <Game
-              userChoice={userChoice}
-              setUserChoice={setUserChoice}
-              optionsArray={optionsArray}
-            />
+            <Box display={"flex"} flexDirection={"column"}>
+              <Game
+                userChoice={userChoice}
+                setUserChoice={setUserChoice}
+                optionsArray={optionsArray}
+                winner={winner}
+              />
+
+              <Box>
+                <h3>User's Choice: {userChoice}</h3>
+                <h3>Computer's Choice: {computerChoice}</h3>
+              </Box>
+            </Box>
           </Item>
         </Grid>
         <Grid item xs={3}>

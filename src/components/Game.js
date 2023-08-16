@@ -2,7 +2,12 @@ import React from "react";
 import { useState } from "react";
 import { Button, Box, Typography, Paper } from "@mui/material";
 
-export default function Game({ userChoice, setUserChoice, optionsArray }) {
+export default function Game({
+  userChoice,
+  setUserChoice,
+  optionsArray,
+  winner,
+}) {
   const handleClick = (btnId) => {
     const userChoiceItem = optionsArray[btnId];
     setUserChoice(userChoiceItem);
@@ -52,7 +57,9 @@ export default function Game({ userChoice, setUserChoice, optionsArray }) {
           Spock
         </Button>
         <Box>
-          <Typography style={{ margin: 50 }}>Result</Typography>
+          <Typography style={{ margin: 50 }}>
+            <h2>{winner}</h2>
+          </Typography>
         </Box>
       </Box>
     </>
