@@ -12,24 +12,26 @@ export default function Stats({ winCouner, loseCounter, tieCounter }) {
       <h1>Statistics</h1>
       <TableContainer component={Paper}>
         <Table sx={{ wSidth: 250 }} aria-label="simple table">
-          <TableRow>
-            <TableCell>
-              <h3>Wins</h3>
-            </TableCell>
-            <TableCell>{winCouner}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <h3>Loses</h3>
-            </TableCell>
-            <TableCell>{loseCounter}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <h3>Ties</h3>
-            </TableCell>
-            <TableCell>{tieCounter}</TableCell>
-          </TableRow>
+          <TableBody>
+            <TableRow>
+              <TableCell>
+                <h3>Wins</h3>
+              </TableCell>
+              <TableCell>{winCouner}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <h3>Loses</h3>
+              </TableCell>
+              <TableCell>{loseCounter}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <h3>Ties</h3>
+              </TableCell>
+              <TableCell>{tieCounter}</TableCell>
+            </TableRow>
+          </TableBody>
         </Table>
       </TableContainer>
     </>

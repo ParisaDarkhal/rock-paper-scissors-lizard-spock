@@ -13,9 +13,9 @@ export default function Guide() {
         height="197"
         src="https://www.youtube.com/embed/x5Q6-wMx-K8"
         title="YouTube video player"
-        frameborder="0"
+        // frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
+        allowFullScreen
       ></iframe>
     </Box>
   );

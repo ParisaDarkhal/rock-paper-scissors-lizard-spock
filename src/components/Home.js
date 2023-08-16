@@ -23,6 +23,7 @@ export default function Home() {
   const [tieCounter, setTieCounter] = useState(0);
   const [userChoice, setUserChoice] = useState("");
   const [computerChoice, setComputerChoice] = useState("");
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
